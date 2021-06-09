@@ -73,7 +73,12 @@
 			function update() {
 				positionX += speed;
 				moveBoxTo(positionX); //at 1500 box's edge is against the right side of the screen
-				
+				if (positionX > boardWidth){
+					speed = -speed;
+				}
+				if (positionX < 0){
+					speed = -speed;
+				} //on TODO 8
 			};
 
 			/* 
