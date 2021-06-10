@@ -8,7 +8,7 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
+			background-color: white;
 			font-size: 300%;
 			text-align: center;
 			display: block;
@@ -18,6 +18,7 @@
 		}
 		.board{
 			height: 100vh;
+			background-image: url("https://static.boredpanda.com/blog/wp-content/uploads/2019/10/wholesome-cute-duck-pics-5da04713f2775__700.jpg");
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -26,7 +27,6 @@
 <body class="board">
 	<!-- HTML for the box -->
 	<div class="box">?</div>
-
 	<script>
 		(function(){
 			'use strict'
@@ -41,11 +41,11 @@
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
 
 			// Every 50 milliseconds, call the update Function (see below)
-			setInterval(update, 50);
+			var interval = setInterval(update, 50);
 			
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			box.on('click', handleBoxClick);
-
+		
 			// moves the Box to a new position on the screen along the X-Axis
 			function moveBoxTo(newPositionX) {
 				box.css("left", newPositionX);
@@ -54,6 +54,15 @@
 			// changes the text displayed on the Box
 			function changeBoxText(newText) {
 				box.text(newText);
+			}
+
+			// changes color of the Box
+			function getRandomColor(){
+				var r = Math.random() * 255;
+				var g = Math.random() * 255;
+				var b = Math.random() * 255;
+				var colorStr = "rgb(" + r + "," + g + "," + b + ")";
+				box.css('background-color',colorStr);
 			}
 
 			//////////////////////////////////////////////////////////////////
@@ -78,7 +87,7 @@
 				}
 				if (positionX < 0){
 					speed = -speed;
-				} //on TODO 8
+				}
 			};
 
 			/* 
@@ -87,12 +96,15 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-				positionX = 0;
+				positionX = Math.random() * boardWidth;
 				points += 1;
 				changeBoxText(points);
-				speed += 3;
-
-
+				if (speed > 0){
+					speed += 3;
+				} else if (speed < 0){
+					speed -= 3;
+				}
+				getRandomColor();
 			};
 		})();
 	</script>
