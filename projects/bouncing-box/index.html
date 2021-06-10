@@ -47,8 +47,9 @@
 			box.on('click', handleBoxClick);
 		
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
+				box.css("top", newPositionY);
 			}
 
 			// changes the text displayed on the Box
@@ -81,7 +82,7 @@
 			*/
 			function update() {
 				positionX += speed;
-				moveBoxTo(positionX); //at 1500 box's edge is against the right side of the screen
+				moveBoxTo(positionX); 
 				if (positionX > boardWidth){
 					speed = -speed;
 				}
@@ -99,7 +100,7 @@
 				positionX = Math.random() * boardWidth;
 				points += 1;
 				changeBoxText(points);
-				if (speed > 0){
+				if (speed >= 0){
 					speed += 3;
 				} else if (speed < 0){
 					speed -= 3;
