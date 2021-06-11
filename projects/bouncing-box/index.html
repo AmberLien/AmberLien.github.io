@@ -113,18 +113,20 @@
 				positionY = Math.random() * boardHeight;
 				points += 1;
 				changeBoxText(points);
-				if (speed > 0){
-					speed += 3;
-				} else if (speed < 0){
-					speed -= 3;
+				if (points % 3 === 0){
+					//sppeds up X movement
+					if (speed > 0){
+						speed += 3;
+					} else if (speed < 0){
+						speed -= 3;
+					}
+					//speeds up Y movement
+					if (speedY > 0){
+						speedY += 3;
+					} else if (speed < 0){
+						speedY -= 3;
+					}
 				}
-				
-				if (speedY > 0){
-					speedY += 3;
-				} else if (speed < 0){
-					speedY -= 3;
-				}
-				
 				getRandomColor();
 			};
 		})();
