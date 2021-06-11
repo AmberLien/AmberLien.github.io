@@ -46,8 +46,11 @@
 			
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			box.on('click', handleBoxClick);
-
+			
+			// Every time the board is clicked, call the endGame Function
 			board.on('click', endGame);
+
+			// ends the game when the user has misclicked 10 times
 			function endGame() {
 				counter += 1;
 				if (counter !== points) {
@@ -140,6 +143,8 @@
 						speedY -= 3;
 					}
 				}
+				
+				//changes box color to a random color
 				getRandomColor();
 			};
 		})();
