@@ -16,6 +16,10 @@
 			top: 100px;
 			left: 250px;  /* <--- Change me! */
 		}
+		.miss {
+			font-size: 200%;
+			color:white;
+		}
 		.board{
 			height: 100vh;
 			background-image: url("https://static.boredpanda.com/blog/wp-content/uploads/2019/10/wholesome-cute-duck-pics-5da04713f2775__700.jpg");	
@@ -25,6 +29,7 @@
 
 </head>
 <body class="board">
+	<div class = "miss">10 Misses is Game Over - Refresh</div>
 	<!-- HTML for the box -->
 	<div class="box">?</div>
 	<script>
@@ -143,7 +148,7 @@
 						speedY -= 3;
 					}
 				}
-				
+
 				//changes box color to a random color
 				getRandomColor();
 			};
