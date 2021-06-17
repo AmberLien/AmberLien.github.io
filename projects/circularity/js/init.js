@@ -88,7 +88,7 @@ var init = function (window) {
             }
 
             // if the circle has gone past the BOTTOM of the screen then place it at the TOP
-            if (circle.y > canvas.width){
+            if (circle.y > canvas.height){
                 circle.y = 0;
             }
 
