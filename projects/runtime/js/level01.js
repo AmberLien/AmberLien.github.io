@@ -27,10 +27,40 @@ var level01 = function (window) {
 
         // TODO 6 and on go here
         // BEGIN EDITING YOUR CODE HERE
+       createSawBlade(400,215);
+       createSawBlade(1000,groundY);
+       createSawBlade(1500,310);
+        function createSawBlade(x,y){
+            var hitZoneSize = 25;
+            var damageFromObstacle = 10;
+            var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
+            sawBladeHitZone.x = x;
+            sawBladeHitZone.y = y;
+            game.addGameItem(sawBladeHitZone);    
+        
+            var obstacleImage = draw.bitmap('img/sawblade.png');
+            obstacleImage.x = -25;
+            obstacleImage.y = -25
+            sawBladeHitZone.addChild(obstacleImage);
+        }        
+        createKnife(700,groundY - 20);
+        createKnife(1100,210);
+        createKnife(1300,310);
+        function createKnife(x,y){
+            var hitZoneSize = 25;
+            var damageFromObstacle = 5;
+            var knifeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
+            knifeHitZone.x = x;
+            knifeHitZone.y = y;
+            game.addGameItem(knifeHitZone);
 
-        
-        
-        
+            var knifeImage = draw.bitmap('img/knife.png');
+            knifeImage.scaleX = .09;
+            knifeImage.scaleY = .30;
+            knifeImage.x = -30;
+            knifeImage.y = -90;
+            knifeHitZone.addChild(knifeImage);
+        }
         // DO NOT EDIT CODE BELOW HERE
     }
 };
