@@ -17,12 +17,15 @@ function runProgram(){
    'DOWN': 40
   }
   // Game Item Objects
-
+  var positionX = 0;
+  var positionY = 0;
+  var speedX = 0;
+  var speedY = 0;
 
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
-
+  $(document).on('keyup', handleKeyUp);
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -32,8 +35,8 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
-    
-
+    repositionGameItem();
+    redrawGameItem();
   }
   
   /* 
@@ -41,20 +44,42 @@ function runProgram(){
   */
   function handleKeyDown(event) {
     if (event.which === KEY.LEFT) {
-      console.log('left pressed');
+      speedX -= 5;
     } else if (event.which === KEY.UP){
-      console.log('up pressed');
+      speedY -= 5;
     } else if(event.which === KEY.RIGHT){
-      console.log('right pressed');
+      speedX += 5;
     } else if (event.which === KEY.DOWN){
-      console.log('down pressed');
+      speedY += 5;
+    }
+  }
+
+  function handleKeyUp(event){
+    if (event.which === KEY.LEFT) {
+      speedX = 0;
+    } else if (event.which === KEY.UP){
+      speedY = 0;
+    } else if(event.which === KEY.RIGHT){
+      speedX = 0;
+    } else if (event.which === KEY.DOWN){
+      speedY = 0;
     }
   }
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-
   
+  function repositionGameItem(){
+    positionX += speedX;
+    positionY += speedY;
+  }
+
+  function redrawGameItem(){
+    $("#gameItem").css({
+      "left": positionX,
+      "top": positionY
+  });
+}
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
