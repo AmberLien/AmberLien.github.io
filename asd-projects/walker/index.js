@@ -10,6 +10,8 @@ function runProgram(){
   // Constant Variables
   var FRAME_RATE = 60;
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
+  var boardWidth = $("#board").css("width");
+  var boardHeight = $("#board").css("height");
   var KEY = {
    'LEFT': 37,
    'UP': 38,
@@ -20,6 +22,7 @@ function runProgram(){
    'S': 83,
    'D': 68
   }
+
   // Game Item Objects
   var positionX = 0;      //the x position for gameItem
   var positionY = 0;      //the y position for gameItem
@@ -100,9 +103,10 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-  
+
   function repositionGameItem(){
-    positionX += speedX;
+    positionX += speedX;git add -A
+
     positionY += speedY;
     positionXTwo += speedXTwo;
     positionYTwo += speedYTwo;
