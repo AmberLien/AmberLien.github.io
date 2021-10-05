@@ -58,40 +58,65 @@ function runProgram(){
   */
   function handleKeyDown(event) {
   //logic for Game Item
-    if (event.which === KEY.LEFT) {       //determines speed when the left arrow is pressed
-      if (positionX <= 0){                //prevents box from leaving the leftmost border
+  //determines speed when the left arrow is pressed
+    if (event.which === KEY.LEFT) {                 
+      if (positionX <= 0){ //prevents gameItem from leaving the leftmost border
         speedX = 0;
       } else{
         speedX -= 5;
-      }
-    } else if (event.which === KEY.UP){   //determiens speed when the up arrow is pressed
-      if (positionY <= 0){                //prevents box from leaving the upper border
+      }  
+  //determiens speed when the up arrow is pressed
+    } else if (event.which === KEY.UP){             
+      if (positionY <= 0){ //prevents gameItem from leaving the upper border
         speedY = 0;
       } else{
         speedY -= 5;
       }
-    } else if(event.which === KEY.RIGHT){
-      if (positionX >= boardWidth - gameItemSize){
+  //determines speed when the right arrow is pressed
+    } else if(event.which === KEY.RIGHT){           
+      if (positionX >= boardWidth - gameItemSize){  //prevents gameItem from leaving the rightmost border
         speedX = 0;
       } else{
         speedX += 5;
       }
-    } else if (event.which === KEY.DOWN){
-      if (positionY >= boardWidth - gameItemSize){
+    //determines speed when the down arrow is pressed
+    } else if (event.which === KEY.DOWN){           
+      if (positionY >= boardWidth - gameItemSize){  //prevents gameItem from leaving the bottom border
         speedY = 0;
       } else{
         speedY += 5;
       }
     }
+
     //logic for Game Item Two
-    if (event.which === KEY.A) { //left
-      speedXTwo -= 5;
-    } else if (event.which === KEY.W){ //up
-      speedYTwo -= 5;
-    } else if(event.which === KEY.D){ //right
-      speedXTwo += 5;
-    } else if (event.which === KEY.S){ //down
-      speedYTwo += 5;
+    //determines speed for A (left) movement
+    if (event.which === KEY.A) {
+      if (positionXTwo <= 0) { //prevents gameItemTwo from leaving the leftmost border
+        speedXTwo = 0;
+      } else{
+        speedXTwo -= 5;
+      }
+    //determines speed for W (up) movement
+    } else if (event.which === KEY.W){ //prevents gameItemTwo from leaving the upper border
+      if (positionYTwo <= 0) {
+        speedYTwo = 0;
+      } else{
+        speedYTwo -= 5;
+      }
+    //determines speed for D (right) movement
+    } else if(event.which === KEY.D){
+      if (positionXTwo >= boardWidth - gameItemSize){ //prevents gameItemTwo from leaving the rightmost border
+        speedXTwo = 0;
+      } else{
+        speedXTwo += 5;
+      }
+    //determines speed for S (down) movement
+    } else if (event.which === KEY.S){
+      if (positionYTwo >= boardHeight - gameItemSize){ //prevents gameItemTwo from leaving the lower border
+        speedYTwo = 0;
+      } else{
+        speedYTwo += 5;
+      }
     }
   }
 
@@ -122,22 +147,40 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
 
   function repositionGameItem(){
-    if (positionX < 0){
+  //positioning for gameItem
+  //horizontal positioning
+    if (positionX < 0){ //repositions gameItem if it moves past left border
       positionX = 0;
-    } else if (positionX > boardWidth - gameItemSize){
+    } else if (positionX > boardWidth - gameItemSize){ //reposiitons gameItem if it moves past right border
       positionX = boardWidth - gameItemSize;
     } else {
-      positionX += speedX;
+      positionX += speedX;          
     }
-    if (positionY < 0){
+  //vertical positioning
+    if (positionY < 0){ //repositions gameItem if it moves above the upper border
       positionY = 0;
-    } else if (positionY > boardHeight - gameItemSize){
+    } else if (positionY > boardHeight - gameItemSize){ //repositions gameItem if it moves below the bottom border
       positionY = boardHeight - gameItemSize;
     } else {
       positionY += speedY;
     }
+  //positioning for gameItemTwo
+  //horizontal positioning
+  if (positionXTwo < 0){ //repositions gameItemTwo if it moves past left border
+    positionXTwo = 0;
+  } else if (positionXTwo > boardWidth - gameItemSize){ //repositions gameItemTwo if it moves past right border
+    positionXTwo = boardWidth - gameItemSize;
+  } else{
     positionXTwo += speedXTwo;
+  }
+  //vertical positioning
+  if (positionYTwo < 0){ //repositions gameItemTwo if it moves past upper border
+    positionYTwo = 0;
+  } else if (positionYTwo > boardHeight - gameItemSize){ //repositions gameItemTwo if it moves past bottom border
+    positionYTwo = boardHeight - gameItemSize;
+  } else {
     positionYTwo += speedYTwo;
+  }
   }
 
   function redrawGameItem(){
