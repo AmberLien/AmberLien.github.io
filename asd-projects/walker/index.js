@@ -10,8 +10,9 @@ function runProgram(){
   // Constant Variables
   var FRAME_RATE = 60;
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
-  var boardWidth = $("#board").css("width");
-  var boardHeight = $("#board").css("height");
+  var boardWidth = 440;
+  var boardHeight = 440;
+  var gameItemSize = 50;
   var KEY = {
    'LEFT': 37,
    'UP': 38,
@@ -57,14 +58,30 @@ function runProgram(){
   */
   function handleKeyDown(event) {
   //logic for Game Item
-    if (event.which === KEY.LEFT) {
-      speedX -= 5;
-    } else if (event.which === KEY.UP){
-      speedY -= 5;
+    if (event.which === KEY.LEFT) {       //determines speed when the left arrow is pressed
+      if (positionX <= 0){                //prevents box from leaving the leftmost border
+        speedX = 0;
+      } else{
+        speedX -= 5;
+      }
+    } else if (event.which === KEY.UP){   //determiens speed when the up arrow is pressed
+      if (positionY <= 0){                //prevents box from leaving the upper border
+        speedY = 0;
+      } else{
+        speedY -= 5;
+      }
     } else if(event.which === KEY.RIGHT){
-      speedX += 5;
+      if (positionX >= boardWidth - gameItemSize){
+        speedX = 0;
+      } else{
+        speedX += 5;
+      }
     } else if (event.which === KEY.DOWN){
-      speedY += 5;
+      if (positionY >= boardWidth - gameItemSize){
+        speedY = 0;
+      } else{
+        speedY += 5;
+      }
     }
     //logic for Game Item Two
     if (event.which === KEY.A) { //left
@@ -105,9 +122,20 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
 
   function repositionGameItem(){
-    positionX += speedX;git add -A
-
-    positionY += speedY;
+    if (positionX < 0){
+      positionX = 0;
+    } else if (positionX > boardWidth - gameItemSize){
+      positionX = boardWidth - gameItemSize;
+    } else {
+      positionX += speedX;
+    }
+    if (positionY < 0){
+      positionY = 0;
+    } else if (positionY > boardHeight - gameItemSize){
+      positionY = boardHeight - gameItemSize;
+    } else {
+      positionY += speedY;
+    }
     positionXTwo += speedXTwo;
     positionYTwo += speedYTwo;
   }
