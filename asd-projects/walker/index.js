@@ -63,28 +63,28 @@ function runProgram(){
       if (positionX <= 0){ //prevents gameItem from leaving the leftmost border
         speedX = 0;
       } else{
-        speedX -= 5;
+        speedX = -5;
       }  
   //determiens speed when the up arrow is pressed
     } else if (event.which === KEY.UP){             
       if (positionY <= 0){ //prevents gameItem from leaving the upper border
         speedY = 0;
       } else{
-        speedY -= 5;
+        speedY = -5;
       }
   //determines speed when the right arrow is pressed
     } else if(event.which === KEY.RIGHT){           
       if (positionX >= boardWidth - gameItemSize){  //prevents gameItem from leaving the rightmost border
         speedX = 0;
       } else{
-        speedX += 5;
+        speedX = 5;
       }
     //determines speed when the down arrow is pressed
     } else if (event.which === KEY.DOWN){           
       if (positionY >= boardWidth - gameItemSize){  //prevents gameItem from leaving the bottom border
         speedY = 0;
       } else{
-        speedY += 5;
+        speedY = 5;
       }
     }
 
@@ -94,28 +94,28 @@ function runProgram(){
       if (positionXTwo <= 0) { //prevents gameItemTwo from leaving the leftmost border
         speedXTwo = 0;
       } else{
-        speedXTwo -= 5;
+        speedXTwo = -5;
       }
     //determines speed for W (up) movement
     } else if (event.which === KEY.W){ //prevents gameItemTwo from leaving the upper border
       if (positionYTwo <= 0) {
         speedYTwo = 0;
       } else{
-        speedYTwo -= 5;
+        speedYTwo = -5;
       }
     //determines speed for D (right) movement
     } else if(event.which === KEY.D){
       if (positionXTwo >= boardWidth - gameItemSize){ //prevents gameItemTwo from leaving the rightmost border
         speedXTwo = 0;
       } else{
-        speedXTwo += 5;
+        speedXTwo = 5;
       }
     //determines speed for S (down) movement
     } else if (event.which === KEY.S){
       if (positionYTwo >= boardHeight - gameItemSize){ //prevents gameItemTwo from leaving the lower border
         speedYTwo = 0;
       } else{
-        speedYTwo += 5;
+        speedYTwo = 5;
       }
     }
   }
@@ -184,10 +184,12 @@ function runProgram(){
   }
 
   function redrawGameItem(){
+  //draws position for gameItem
     $("#gameItem").css({
       "left": positionX,
       "top": positionY
   });
+  //draws position for gameItemTwo
     $("#gameItemTwo").css({
       "left": positionXTwo,
       "top": positionYTwo
