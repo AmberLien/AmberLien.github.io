@@ -41,7 +41,9 @@ function applyFilter(filterFunction){
     }
 }
 // TODO 6: Create the applyFilterNoBackground function
-
+function applyFilterNoBackgroud(){
+    
+}
 
 // TODO 3 & 5: Create filter functions
 
@@ -60,6 +62,7 @@ function increaseGreenByBlue(arr){
     arr[GREEN] = keepInBounds(arr[GREEN] + arr[BLUE]);
 }
 
+//ensures that rgb colors are 0 <= num <= 255
 function keepInBounds(num){
     var number = (Math.max(num, 0)); //If num < 0, number will store 0. Otherwise, it will store num.
     number = (Math.min(number, 255)); //If number > 255, number will store 255. Otherwise, it will store number.
