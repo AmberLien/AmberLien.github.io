@@ -4,9 +4,11 @@ $(document).ready(function(){
     const $display = $('#display');
 
     // TODO: Call your apply function(s) here
-    applyFilter(reddify);
+    applyFilter(reddify); //filters the image to be more red
 
-
+    applyFilter(decreaseBlue); //filters the image to decrease blue
+    
+    applyFilter(increaseGreenByBlue); //filters the image to increase green by blue
 
 
     render($display, image);
@@ -26,7 +28,7 @@ function applyFilter(filterFunction){
 
             //converts rgbString to an array with 3 values -- the indices of red, green, and blue
             var rgbNumbers = rgbStringToArray(rgbString);
-            
+
             //calls filterFunction
             filterFunction(rgbNumbers);
 
@@ -42,8 +44,26 @@ function applyFilter(filterFunction){
 
 
 // TODO 3 & 5: Create filter functions
+
+//reddifies the image
 function reddify(arr){
     arr[RED] = 255; //changes the RED index of an array to 255
+}
+
+//decreases the blue in the image
+function decreaseBlue(arr){
+    arr[BLUE] = keepInBounds(arr[BLUE] - 50);
+}
+
+//increases green by blue
+function increaseGreenByBlue(arr){
+    arr[GREEN] = keepInBounds(arr[GREEN] + arr[BLUE]);
+}
+
+function keepInBounds(num){
+    var number = (Math.max(num, 0)); //If num < 0, number will store 0. Otherwise, it will store num.
+    number = (Math.min(number, 255)); //If number > 255, number will store 255. Otherwise, it will store number.
+    return number;
 }
 
 // CHALLENGE code goes below here
