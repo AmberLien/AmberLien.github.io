@@ -4,11 +4,11 @@ $(document).ready(function(){
     const $display = $('#display');
 
     // TODO: Call your apply function(s) here
-    applyFilter(reddify); //filters the image to be more red
+    applyFilterNoBackground(reddify); //filters the image to be more red
 
     applyFilter(decreaseBlue); //filters the image to decrease blue
     
-    applyFilter(increaseGreenByBlue); //filters the image to increase green by blue
+    applyFilterNoBackground(increaseGreenByBlue); //filters the image to increase green by blue
 
 
     render($display, image);
@@ -41,10 +41,29 @@ function applyFilter(filterFunction){
     }
 }
 // TODO 6: Create the applyFilterNoBackground function
-function applyFilterNoBackgroud(){
-    
-}
+function applyFilterNoBackground(filterFunction){
+    //iterates through the image array
+    for (var r = 0; r < image.length; r++){
+        for (var c = 0; c < image[r].length; c++){
+            //stores individual rgbString in a variable
+            var rgbString = image[r][c];
+            
+            if (rgbString != BACKGROUND){ //checks if the pixel is a background pixel
+                //converts rgbString to an array with 3 values -- the indices of red, green, and blue
+                var rgbNumbers = rgbStringToArray(rgbString);
 
+                //calls filterFunction
+                filterFunction(rgbNumbers);
+
+                //stores new rgb values in rgbString
+                rgbString = rgbArrayToString(rgbNumbers);
+            }
+
+            //changes the values in image to the new rgb values
+            image[r][c] = rgbString;
+        }
+    }
+}
 // TODO 3 & 5: Create filter functions
 
 //reddifies the image

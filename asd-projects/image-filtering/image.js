@@ -26,6 +26,9 @@ const image = [
     ["rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(100, 50, 0)",    "rgb(100, 50, 0)",    "rgb(100, 50, 0)",    "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(100, 50, 0)",    "rgb(100, 50, 0)",    "rgb(100, 50, 0)",    "rgb(150, 150, 150)", "rgb(150, 150, 150)"], 
     ["rgb(150, 150, 150)", "rgb(100, 50, 0)",    "rgb(100, 50, 0)",    "rgb(100, 50, 0)",    "rgb(100, 50, 0)",    "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(150, 150, 150)", "rgb(100, 50, 0)",    "rgb(100, 50, 0)",    "rgb(100, 50, 0)",    "rgb(100, 50, 0)",    "rgb(150, 150, 150)"]];
 
+//set constant for the index of the background color
+const BACKGROUND = image[0][0];
+
 // this function uses jQuery to create the image on the screen based on the image data
 function render(element, image){
     for (var r = 0; r < image.length; r++) {
