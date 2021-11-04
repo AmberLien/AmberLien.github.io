@@ -23,7 +23,12 @@ The CSS ids you will work with are:
 
 
 // TODO 1: Implement swap
-
+function swap(array, i, j){
+    var temp = array[i]; // temp stores the value of array at index i
+    array[i] = array[j]; // switches the value of array[i] with the value at array[j]
+    array[j] = temp;     // switches the value of array[j] with the value at array[i]
+    drawSwap(array, i, j); //calls drawSwap
+}
 
 ///////////////////////////////////////////////////////////////////////
 /////////////////////// YOUR WORK GOES ABOVE HERE /////////////////////
