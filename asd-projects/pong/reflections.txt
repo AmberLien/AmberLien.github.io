@@ -1,0 +1,30 @@
+User Story/Gameplay:
+Two paddles will move vertically as a ball comes towards them; the goal is to prevent the ball from passing the paddles and hitting the wall behind the paddles.
+When the game begins, the two paddles are at the center of the screen and the ball is in the center, moving towards one of the paddles.
+The game should end when one player reaches a certain number of points. 
+Ifs: 
+    if player one wins --> game over
+    if player two wins --> game over
+    if the ball hits a paddle --> change the direction of travel
+    if the ball hits the side walls --> change the direction of travel
+    if the ball hits the back/front walls --> point for opposing player
+
+Visual Game Components:
+animated:
+    the two paddles
+    the ball
+static:
+    the board
+    the points
+data management for the ball: positionX, positionY, speedX, speedY
+data management for the paddles: positionY
+will need to keep track of points
+
+Events/Logic:
+when user clicks the button corresponding for up, the paddle should move up
+    positionY is increased
+when user clicks the button corresponding for down, the paddle should move down
+    positionY is decreased
+when the ball hits a paddle, its x and y direction should be reversed
+when the ball hits a side wall, its y direction should be reversed
+when the ball hits a back wall, a point should go up for the team and the position of the ball reset
