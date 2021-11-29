@@ -46,9 +46,10 @@ function applyFilterNoBackground(filterFunction){
     for (var r = 0; r < image.length; r++){
         for (var c = 0; c < image[r].length; c++){
             //stores individual rgbString in a variable
+            var backgroundColor = image[0][0]; //establishes the background pixel's color
             var rgbString = image[r][c];
             
-            if (rgbString != BACKGROUND){ //checks if the pixel is a background pixel
+            if (rgbString != backgroundColor){ //checks if the pixel is a background pixel
                 //converts rgbString to an array with 3 values -- the indices of red, green, and blue
                 var rgbNumbers = rgbStringToArray(rgbString);
 
