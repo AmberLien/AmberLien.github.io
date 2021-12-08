@@ -39,6 +39,7 @@ body {
   width: 10px;
   height: 50px;
   position: absolute;
+  left: 10px;
   top: 215px;
 }
 /* player two's paddle */
@@ -47,7 +48,7 @@ body {
   width: 10px;
   height: 50px;
   position: absolute;
-  right: 0px;
+  right: 10px;
   top: 215px;
 }
 
