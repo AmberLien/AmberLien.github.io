@@ -20,14 +20,12 @@ function runProgram(){
     "down": 40
   }
 
-  // Game Item Variables
-  
-
+  // GAME VARIABLES //
   //ping pong ball
-  let positionBallX; //Math.floor(Math.random() * 50) currently an arbitrary number for testing
-  let postiionBallY;
-  let speedXBall;
-  let speedYBall;
+  let positionBallX = Math.floor(Math.random() * 200 + 100); //sets the ball's x position randomly in the middle of the board
+  let positionBallY = Math.floor(Math.random() * 200 + 100); //sets the ball's y position randomly in the middle of the board
+  let speedBallX;
+  let speedBallY;
 
   // Game Item Objects
   let paddleOne = FactoryFunction("#paddleOne"); //creates the object containing info abt paddleOne
@@ -36,8 +34,9 @@ function runProgram(){
 
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
-  $(document).on('keydown', handleKeyDown);                           // change 'eventType' to the type of event you want to handle
-  $(document).on('keyup', handleKeyUp);
+  startBall();
+  $(document).on('keydown', handleKeyDown); //logs when a key is pressed
+  $(document).on('keyup', handleKeyUp); //logs when a key is released
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -48,10 +47,15 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
-    paddleOne.y = paddleOne.y + paddleOne.speedY;
-    paddleTwo.y = paddleTwo.y + paddleTwo.speedY;
-    $(paddleOne.id).css("top", paddleOne.y);
-    $(paddleTwo.id).css("top", paddleTwo.y);
+    //paddles' movement
+    paddleOne.y = paddleOne.y + paddleOne.speedY; //updates paddleOne's position
+    paddleTwo.y = paddleTwo.y + paddleTwo.speedY; //updates paddleTwo's position
+    $(paddleOne.id).css("top", paddleOne.y);  //updates the position in the paddleOne object
+    $(paddleTwo.id).css("top", paddleTwo.y); //updates the position in the paddleTwo object
+
+    //ball's movement
+    ball.x = $(ball.id).css("left", positionBallX); //updates the ball's x position
+    ball.y = $(ball.id).css("top", positionBallY); //updates the ball's y position
   }
   
   /* 
@@ -73,14 +77,14 @@ function runProgram(){
 
   function handleKeyUp(event){
     if(event.which === KEY_OBJECT.w){
-      paddleOne.speedY = 0;
+      paddleOne.speedY = 0; //stops paddleOne from moving up
     } else if (event.which === KEY_OBJECT.s){
-      paddleOne.speedY = 0;
+      paddleOne.speedY = 0; //stops paddleOne from moving down
     }
     if (event.which === KEY_OBJECT.up){
-      paddleTwo.speedY = 0;
+      paddleTwo.speedY = 0; //stops paddleTwo from moving up
     } else if(event.which === KEY_OBJECT.down){
-      paddleTwo.speedY = 0;
+      paddleTwo.speedY = 0; //stops paddleTwo from moving down
     }
   }
 
@@ -99,6 +103,12 @@ function runProgram(){
     gameInstance.speedY = 0;              //creates the speedY property
     gameInstance.color - $(id).css("background-color");
     return gameInstance;                  //returns an instance
+  }
+
+  function startBall(){ //currently being worked on
+    let coinFlip = Math.floor(Math.random() * 10); //randomly generates a number to determine the ball's random speed
+    speedBallX = coinFlip > 5 ? 1 : -1; //determines which direction the ball is moving in the x-direction
+    speedBallY = coinFlip > 5 ? 1 : -1; //determines which direction the ball is moving in the y-direction  
   }
   
 
