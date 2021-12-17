@@ -59,7 +59,7 @@ function runProgram(){
     ball.y = ball.y + ball.speedY; // updates the ball's y position w/ the y speed
 
     detectBall(); // checks the ball's speed and position
-
+    $(ball.id).css("background-color", ball.color);
     $(ball.id).css("left", ball.x); // updates the ball's x position
     $(ball.id).css("top", ball.y);  // updates the ball's y position
   }
@@ -108,7 +108,7 @@ function runProgram(){
     gameInstance.height = parseFloat($(id).height()); // creates the height property
     gameInstance.speedX = 0;              // creates the speedX property
     gameInstance.speedY = 0;              // creates the speedY property
-    gameInstance.color - $(id).css("background-color");
+    gameInstance.color = $(id).css("background-color");
     return gameInstance;                  // returns an instance
   }
 
@@ -120,9 +120,15 @@ function runProgram(){
   }
 
   function detectBall(){
-    if ((ball.x <= 0) || ((ball.x + ball.width) >= board.width)) { // prevents ball from moving past left and right borders
+    if (ball.x <= 0) { // prevents ball from moving past left and right borders
+      score(0); // updates the score
       ball.speedX *= -1; // reverses ball's direction
+    } 
+    if ((ball.x + ball.width) >= board.width){
+      score(); // updates the score
+      ball.speedX *= -1;
     }
+    // vertical movement
     if ((ball.y <= 0) || ((ball.y + ball.height) >= board.height)){ // prevents ball from moving past upper and lower borders
       ball.speedY *= -1; // reverses ball's direction
     }
@@ -137,12 +143,14 @@ function runProgram(){
     }
   }
 
- ///////// TESTING TESTING TESTING ///////////
-  function score(){
-    if (ball.x === board.x){
-      console.log("Player Two");
-    } else if(ball.x + board.width === board.x + board.width){
-      console.log("Player One");
+ ///////// TESTING TESTING TESTING!!!!! ///////////
+  function score(position){
+    ///scoreOne.text = $(id).css("text", "Hi");
+    //tesing collision detection!!
+    if (position === 0){
+      ball.color = "blue";
+    } else{
+      ball.color = "pink";
     }
   }
 
