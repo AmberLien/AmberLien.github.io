@@ -25,9 +25,8 @@ function runProgram(){
   let paddleTwo = FactoryFunction("#paddleTwo"); // creates the object containing info abt paddleTwo
   let ball = FactoryFunction("#ball");           // creates the object containing info abt the ball
   let board = FactoryFunction("#board");         // creates the object containing info abt the board
-  let scoreOne = FactoryFunction("#scoreOne");   // creates the object containing info abt the score for paddleOne
-  let scoreTwo = FactoryFunction("#scoreTwo");   // creates the object containing info abt the score for paddleTwo
-  
+  let updateScoreOne = 0;
+  let updateScoreTwo = 0;
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   startBall(); // puts the ball in motion
@@ -59,6 +58,8 @@ function runProgram(){
     ball.y = ball.y + ball.speedY; // updates the ball's y position w/ the y speed
 
     detectBall(); // checks the ball's speed and position
+    detectBallPaddle(ball, paddleOne); // checks if the ball's hit paddleOne
+    detectBallPaddle(ball, paddleTwo); // checks if the ball's hit paddleTwo
     $(ball.id).css("background-color", ball.color);
     $(ball.id).css("left", ball.x); // updates the ball's x position
     $(ball.id).css("top", ball.y);  // updates the ball's y position
@@ -115,8 +116,8 @@ function runProgram(){
   function startBall(){
     ball.x = Math.random() * 200 + 100; // sets the ball's initial x position around the middle
     ball.y = Math.random() * 200 + 100; // sets the ball's initial y position around the middle
-    ball.speedX = (Math.random() * 3 + 4) * Math.random() > .5 ? 1 : -1; // assigns the x speed b/w -5 and 5
-    ball.speedY = (Math.random() * 3 + 4) * Math.random() > .5 ? 1 : -1; // assigns the y speed b/w -5 and 5  
+    ball.speedX = (Math.random() * 3 + 5) * Math.random() > .5 ? 1 : -1; // assigns the x speed b/w -5 and 5
+    ball.speedY = (Math.random() * 3 + 5) * Math.random() > .5 ? 1 : -1; // assigns the y speed b/w -5 and 5  
   }
 
   function detectBall(){
@@ -143,14 +144,42 @@ function runProgram(){
     }
   }
 
- ///////// TESTING TESTING TESTING!!!!! ///////////
+  function detectBallPaddle(movingObject, paddle){
+    // movingObject's sides
+    movingObject.rightX = movingObject.x + movingObject.width; // movingObject's right side
+    movingObject.leftX = movingObject.x; // movingObject's left side
+    movingObject.topY = movingObject.y; // movingObject's top side
+    movingObject.bottomY = movingObject.y + movingObject.height; // movingObject's bottom side
+
+    //paddle's sides
+    paddle.rightX = paddle.x + paddle.width; // paddle's right side
+    paddle.leftX = paddle.x; // paddle's left side
+    paddle.topY = paddle.y; // paddle's top side
+    paddle.bottomY = paddle.y + paddle.height; // paddle's bottom side
+
+    //detects collisions between the ball and the paddle
+    if (movingObject.rightX > paddle.leftX && movingObject.leftX < paddle.rightX){
+      if (movingObject.bottomY > paddle.topY && movingObject.topY < paddle.bottomY){
+       ball.speedX *= -1;
+      }
+    }
+  }
+
+  // determines the scores
   function score(position){
-    ///scoreOne.text = $(id).css("text", "Hi");
-    //tesing collision detection!!
-    if (position === 0){
-      ball.color = "blue";
-    } else{
-      ball.color = "pink";
+    if (position === 0){ // detects if paddleTwo scored
+      updateScoreTwo++; // updates paddleTwo's score
+      $('#scoreTwo').text("Score: " + updateScoreTwo);
+      startBall();
+    } else{ // detects if paddleOne scored
+      updateScoreOne++; // updates paddleOne's score
+      $('#scoreOne').text("Score: " + updateScoreOne);
+      startBall();
+    }
+    
+    // ends the game when one player scores 5 points
+    if (updateScoreOne === 5 || updateScoreTwo === 5){
+      endGame();
     }
   }
 
