@@ -25,8 +25,10 @@ function runProgram(){
   let paddleTwo = FactoryFunction("#paddleTwo"); // creates the object containing info abt paddleTwo
   let ball = FactoryFunction("#ball");           // creates the object containing info abt the ball
   let board = FactoryFunction("#board");         // creates the object containing info abt the board
-  let updateScoreOne = 0;
-  let updateScoreTwo = 0;
+  let updateScoreOne = 0; // creates the variable for paddleOne's score
+  let updateScoreTwo = 0; // creates the variable for paddleTwo's score
+  let gameOver = FactoryFunction("#gameOver"); // creates the object for the gameOver screen
+
   // one-time setup
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   startBall(); // puts the ball in motion
@@ -116,8 +118,8 @@ function runProgram(){
   function startBall(){
     ball.x = Math.random() * 200 + 100; // sets the ball's initial x position around the middle
     ball.y = Math.random() * 200 + 100; // sets the ball's initial y position around the middle
-    ball.speedX = (Math.random() * 3 + 5) * Math.random() > .5 ? 1 : -1; // assigns the x speed b/w -5 and 5
-    ball.speedY = (Math.random() * 3 + 5) * Math.random() > .5 ? 1 : -1; // assigns the y speed b/w -5 and 5  
+    ball.speedX = (10) * Math.random() > .5 ? 1 : -1; // assigns the x speed of -10 or 10
+    ball.speedY = (10) * Math.random() > .5 ? 1 : -1; // assigns the y speed of -10 or 10  
   }
 
   function detectBall(){
@@ -184,6 +186,10 @@ function runProgram(){
   }
 
   function endGame() {
+    // reveals game over message
+    $(gameOver.id).css("color","white"); // reveals the message
+    $(gameOver.id).text("Game Over"); 
+
     // stop the interval timer
     clearInterval(interval);
 
