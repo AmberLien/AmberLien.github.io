@@ -27,7 +27,6 @@ nav {
     border-bottom: 1px solid rgba(231, 223, 221, .5);
 }
 
-
 #nav-ul {
     width: 50%;
     list-style: none;
@@ -70,38 +69,38 @@ h1 {
     width: max-content;
 }
 
-h1::before,
-h1::after {
-    content: ' ';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-h1::before {
+#portfolio {
+    list-style-type: none;
+    padding-left: 0;
     background: var(--bg-color);
-    animation: typewriter var(--typewriterSpeed) steps(var(--typewriterSteps)) 1s forwards;
 }
 
-h1::after {
-    width: .120em;
-    background: var(--text-color);
-    animation: typewriter var(--typewriterSpeed) steps(var(--typewriterSteps)) 1s forwards, blink 700ms steps(2, start) infinite;
+#portfolio li {
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.about-me {
-    width: 80%;
+#portfolio li:hover {
+    background: #4717f6;
+    color: var(--text-color)
+} 
+
+#portfolio a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.content {
+    flex: 1;
+    padding: 15px;
+}
+
+
+main {
+    max-width: 800px;
     margin: auto;
-    margin-top: 15%;
-    background: var(--bg-color);
-}
-
-.subtitle {
-    opacity: 0;
-    transform: translateY(3rem);
-    animation: fadeInUp 2s ease calc(var(--typewriterSpeed) + 2s) forwards;
 }
 
 #stars {
@@ -658,26 +657,6 @@ h1::after {
     16px 1650px #fff, 1021px 1075px #fff, 723px 424px #fff, 1175px 41px #fff,
     494px 1957px #fff, 1296px 431px #fff, 175px 1507px #fff, 831px 121px #fff,
     498px 1947px #fff, 617px 880px #fff, 240px 403px #fff;
-}
-
-@keyframes typewriter {
-    to {
-        left: 100%
-    }
-}
-
-@keyframes blink {
-    to {
-        visibility: hidden;
-    }
-}
-
-@keyframes fadeInUp {
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 @keyframes animStar {
