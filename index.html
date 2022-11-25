@@ -1,113 +1,29 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
     <head>
-      <title> Amber Lien's Website </title>
-      <style>
-        body {
-            background: rgb(19, 39, 62);
-            color: rgb(255 ,255 ,255 );
-            padding: 10px;
-            font-family: arial;
-        }
-        #all-contents {
-            max-width: 800px;
-            margin: auto;
-        }
-    
-        /* navigation menu */
-        nav {
-            background: rgb(40, 63, 84);
-            margin: 0 auto;
-            margin-bottom: 20px;
-            display: flex;
-            padding: 10px;
-        }
-        h1 {
-            display: flex;
-            align-items: center;
-            color: white;
-            flex: 1;
-            margin: 0;
-        }
-        #nav-ul {
-            list-style-image: none;
-        }
-        .nav-li {
-            display: inline-block;
-            padding: 0 10px;
-        }
-        a {
-            text-decoration: none;
-            color: #fff;
-        }
-    
-        /* main container area beneath menu */
-        main {
-            background: rgb(40, 63, 84);
-            display: flex;
-        }
-        .sidebar {
-            margin-right: 25px;
-            padding: 10px;
-        }
-        .sidebar-img {
-            width: 200px;
-        }
-        .content {
-            flex: 1;
-            padding: 15px;
-        }
-        #interests {
-            border: 4px silver ridge;
-            padding: 8px;
-        }
-        h2, h3 {
-            margin: 0px;
-        }
-    </style>
-    <link rel="shortcut icon" href="img/duck.ico">
-    <link rel="apple-touch-icon" href="img/duck.png">
-    <link rel="icon" sizes="192X192" href="img/duck.png">
+        <link rel="stylesheet" href="styles.css">
     </head>
-    
     <body>
-      <!--All content goes here!-->
-      <div id="all-contents">
-          <nav>
-              <h1>Amber Lien's Website</h1>
-              <ul id="nav-ul">
-                  <li class="nav-li">
-                    <a href="index.html">Home</a>
-                  </li>
-                  <li class="nav-li">
-                    <a href="portfolio.html">Portfolio</a>
-                  </li>
-              </ul>
-          </nav>
-
-          <main>
-              <!--Sidebar section-->
-              <div class="sidebar">
-                  <img class="sidebar-img" src="data:image/jpeg;base64,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">
-              </div>
-
-              <!--Content section-->
-              <div class="content">
-                  <h2>Amber Lien</h2>
-                  <p>Hi, I'm Amber, a frehsman at MIT interested in computer science and neuroscience. I also have a strange love for ducks!</p>
-                  <!--Interests section-->
-                  <div id="interests">
-                      <h3>Interests</h3>
-                      <ul>
-                          <li>Ducks!</li>
-                          <li>Watching videos</li>
-                          <li>Listening to music and podcasts</li>
-                          <li>Hanging out with my friends :]</li>
-                      </ul>
-                  </div>
-              </div>
-
-          </main>
-      </div>
+        <nav>
+            <a href="index.html"><img class="logo" style="width:125px; height: 125px" src="img/duck_logo.svg"/></a>
+            <ul id="nav-ul">
+                <li class="nav-link"><a href="portfolio.html">Portfolio</a></li>
+                <li class="nav-link"><a href="resume.html">Resume</a></li>
+                <li class="nav-link"><a href="random-thoughts.html">Random Thoughts</a></li>
+                <li class="nav-link"><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <section>
+            <div id="stars"></div>
+            <div id="stars2"></div>
+            <div id="stars3"></div>
+        </section>
+        <header class="about-me">
+            <h1>Hello! I'm Amber.</h1>
+            <p class="subtitle">I'm a freshman at MIT studying electrical engineering and computer science. I'm interested in web design, robotics, and exercising creativity in the tech world!</p>
+            <p class="subtitle">Fun fact: I love ducks, space, ducks <b>in</b> space!</p>
+        </header>
     </body>
 </html>
+
+
