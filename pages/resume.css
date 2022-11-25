@@ -7,7 +7,6 @@
 
 html {
     height: 100%;
-    overflow: hidden;
 }
 
 body {
@@ -49,7 +48,6 @@ a:hover {
     cursor: pointer;
 }
 
-
 .nav-link a:link, .nav-link a:visited { /* want to add underline animation */
     color: var(--text-color);
     text-decoration: none;
@@ -59,51 +57,33 @@ a:hover {
     font-weight: bold;
 }
 
-header {
+.resume {
     position: relative;
-}
-
-h1 {
-    font-weight: 400;
-    position: relative;
+    top: 65px;
     width: max-content;
-}
-
-#portfolio {
-    list-style-type: none;
-    padding-left: 0;
-    background: var(--bg-color);
-}
-
-#portfolio li {
-    color: var(--text-color);
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-#portfolio li:hover {
-    background: #4717f6;
-    color: var(--text-color)
-} 
-
-#portfolio a {
-    text-decoration: none;
-    color: var(--text-color);
-}
-
-.content {
-    flex: 1;
-    padding: 15px;
-}
-
-h2 {
-    background: var(--bg-color);
-}
-
-main {
-    max-width: 800px;
     margin: auto;
+    list-style-type: none;
+    padding: 20px 20px;
+}
+
+p a {
+    color: var(--text-color);
+}
+
+h1, h2 {
+    font-weight: 400;
+    background: var(--bg-color);
+}
+
+ul {
+    background: var(--bg-color);
+}
+
+.project-links {
+    color: var(--text-color);
+    text-decoration-line: underline;
+    text-decoration-color: rgba(71, 23, 246, .5);
+    text-decoration-thickness: 2px;
 }
 
 #stars {
