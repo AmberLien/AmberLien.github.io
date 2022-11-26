@@ -7,7 +7,6 @@
 
 html {
     height: 100%;
-    overflow: hidden;
 }
 
 body {
@@ -58,33 +57,11 @@ a:hover {
     font-weight: bold;
 }
 
-header {
-    width: 90%;
-    margin: auto;
-    background: var(--bg-color);
-}
-
 h1 {
+    padding: 5%;
     font-weight: 400;
 }
 
-.thoughts {
-    width: 80%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-}
-
-.thoughts p {
-    background: var(--bg-color);
-}
-
-p a {
-    color: var(--text-color);
-    text-decoration-line: underline;
-    text-decoration-color: rgba(71, 23, 246, .5);
-    text-decoration-thickness: 2px;
-}
 
 #stars {
     width: 1px;
